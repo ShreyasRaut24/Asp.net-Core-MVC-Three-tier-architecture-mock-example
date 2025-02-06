@@ -1,0 +1,12 @@
+﻿@model Demo.BusinessLayer.Model.Company
+
+<h1>Company</h1>
+
+
+<form asp-controller="Company" asp-action="Create" method="post">
+
+    <input asp-for="CompanyName" />
+    <input asp-for="Address" />
+    <button type="submit">Submit</button>
+</form>
+
