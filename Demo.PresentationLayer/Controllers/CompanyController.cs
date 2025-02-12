@@ -18,6 +18,8 @@ namespace Demo.PresentationLayer.Controllers
 
             return View(comapnies);
         }
+
+        
         [HttpGet]
         public IActionResult Create()
         {
@@ -29,6 +31,17 @@ namespace Demo.PresentationLayer.Controllers
         {
             _companyRepository.Create(company);
             return RedirectToAction("Company");
+        }
+
+        public IActionResult Delete(int id)
+        {
+            _companyRepository.Delete(id);
+            return RedirectToAction("Company");
+        }
+        public IActionResult CompanyView(int id)
+        {
+            var company = _companyRepository.GetById(id);
+            return View(company);
         }
     }
 }

@@ -1,0 +1,11 @@
+﻿@model Demo.BusinessLayer.Model.Company
+
+<h1>Company Details</h1>
+
+<div>
+	<p>CopanyId : @Model.Id </p>
+	<p>CopanyName : @Model.CompanyName </p>
+	<p>CopanyAddress : @Model.Address </p>
+</div>
+
+<a asp-action="Company" asp-controller="Company" class="btn btn-primary">Back To List</a>

@@ -55,7 +55,42 @@ namespace Demo.DataAccessLayer.Repository
 
         public Company GetById(int id)
         {
-            return new Company();
+            //DB logic
+            string connstring = "Server=.;Database=Demo;Integrated Security=True;TrustServerCertificate=True;";
+
+            SqlConnection con = new SqlConnection(connstring);
+            con.Open();
+            SqlCommand cmd = new SqlCommand("GetById", con);
+            cmd.Parameters.AddWithValue("@CompanyId", id);
+            cmd.CommandType = CommandType.StoredProcedure;
+            SqlDataReader sqlDataReader = cmd.ExecuteReader();
+
+            Company company = new Company();
+
+            while (sqlDataReader.Read())
+            {
+              
+                company.Id = Convert.ToInt32(sqlDataReader["CompanyId"]);
+                company.CompanyName = sqlDataReader.GetString(1);
+                company.Address = sqlDataReader.GetString(2);
+
+            }
+            return company;
+        }
+
+        public int Delete(int id)
+        {
+            //DB logic
+            string connstring = "Server=.;Database=Demo;Integrated Security=True;TrustServerCertificate=True;";
+
+            SqlConnection con = new SqlConnection(connstring);
+            con.Open();
+            SqlCommand cmd = new SqlCommand("DeleteCompany", con);
+            cmd.Parameters.AddWithValue("@CompanyId", id);
+            cmd.CommandType = CommandType.StoredProcedure;
+            var result = cmd.ExecuteNonQuery();
+            con.Close();
+            return result;
         }
     }
 }

@@ -21,9 +21,9 @@
 				<td>@company.Address</td>
 
 				<td>
-					<a asp-controller="Company" asp-action="View">View </a> |
+					<a asp-controller="Company" asp-action="CompanyView" asp-route-id="@company.Id">View </a> |
 					<a asp-controller="Company" asp-action="Edit">Edit </a> |
-					<a asp-controller="Company" asp-action="Delete">Delete </a> 
+					<a asp-controller="Company" asp-action="Delete" asp-route-id="@company.Id">Delete </a>
 				</td>
 			</tr>
 		}

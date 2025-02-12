@@ -11,6 +11,8 @@ namespace Demo.BusinessLayer.IRepository
         public List<Company> List();
         public Company GetById(int id);
 
+        int Delete(int id);
+
 
     }
 }
