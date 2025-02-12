@@ -14,6 +14,13 @@ namespace Demo.PresentationLayer.Controllers
         }
         public IActionResult Company()
         {
+            var comapnies = _companyRepository.List();
+
+            return View(comapnies);
+        }
+        [HttpGet]
+        public IActionResult Create()
+        {
             return View();
         }
 
