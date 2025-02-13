@@ -1,0 +1,13 @@
+﻿@model Demo.BusinessLayer.Model.Company
+
+<h1>Update Company</h1>
+
+
+<form asp-controller="Company" asp-action="Update" method="post">
+    <input asp-for="Id" />
+    <input asp-for="CompanyName" />
+    <input asp-for="Address" />
+    <button type="submit">Submit</button>
+</form>
+
+<a asp-action="Company" asp-controller="Company" class="btn btn-primary">Back To List</a><div></div>

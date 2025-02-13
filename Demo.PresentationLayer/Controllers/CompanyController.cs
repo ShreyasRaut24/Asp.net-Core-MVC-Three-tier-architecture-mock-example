@@ -43,5 +43,17 @@ namespace Demo.PresentationLayer.Controllers
             var company = _companyRepository.GetById(id);
             return View(company);
         }
+
+        public IActionResult Update(int id)
+        {
+            var company = _companyRepository.GetById(id);
+            return View(company);
+        }
+        [HttpPost]
+        public IActionResult Update(Company company)
+        {
+            _companyRepository.Update(company);
+            return RedirectToAction("Company");
+        }
     }
 }

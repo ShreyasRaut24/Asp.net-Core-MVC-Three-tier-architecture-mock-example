@@ -26,7 +26,19 @@ namespace Demo.DataAccessLayer.Repository
         }
         public int Update(Company company)
         {
-            return 1;
+            //DB logic
+            string connstring = "Server=.;Database=Demo;Integrated Security=True;TrustServerCertificate=True;";
+
+            SqlConnection con = new SqlConnection(connstring);
+            con.Open();
+            SqlCommand cmd = new SqlCommand("UpdateCompany", con);
+            cmd.Parameters.AddWithValue("@CompanyId", company.Id);
+            cmd.Parameters.AddWithValue("@CompanyName", company.CompanyName);
+            cmd.Parameters.AddWithValue("@CompanyAddress", company.Address);
+            cmd.CommandType = CommandType.StoredProcedure;
+            var result = cmd.ExecuteNonQuery();
+            con.Close();
+            return result;
         }
 
         public List<Company> List()
@@ -69,11 +81,12 @@ namespace Demo.DataAccessLayer.Repository
 
             while (sqlDataReader.Read())
             {
-              
-                company.Id = Convert.ToInt32(sqlDataReader["CompanyId"]);
-                company.CompanyName = sqlDataReader.GetString(1);
-                company.Address = sqlDataReader.GetString(2);
-
+                return new Company
+                {
+                    Id = Convert.ToInt32(sqlDataReader["CompanyId"]),
+                    CompanyName = sqlDataReader.GetString(1),
+                    Address = sqlDataReader.GetString(2)
+                };
             }
             return company;
         }
